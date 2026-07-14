@@ -1,6 +1,7 @@
 bill=int(input("Enter the original bill amount:"))
 gst=bill*5/100
 bill=gst+bill
+print("The original bil along with GST:",bill)
 if(bill>0) and (bill<=2000):
   bill=float(bill-(4/100*bill))
 elif(bill>2000) and (bill<=3000):
