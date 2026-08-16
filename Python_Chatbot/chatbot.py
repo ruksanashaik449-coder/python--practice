@@ -1,5 +1,4 @@
 class PythonChatbot:
-
     def __init__(self):
         self.questions = {
             "what is python":
@@ -157,78 +156,53 @@ class PythonChatbot:
                 "A comment is text written in code to explain the program. "
                 "Python does not execute comments."
         }
-
     def find_answer(self, question):
-
         question = question.lower()
         question = question.strip()
         question = question.replace("?", "")
-
         if question in self.questions:
             answer = self.questions[question]
             return answer
-
         ignored_words = [
             "what", "is", "are", "a", "an", "the",
             "tell", "me", "about", "please", "explain"
         ]
-
         words = question.split()
-
         useful_words = []
-
         for word in words:
             if word not in ignored_words:
                 useful_words.append(word)
-
         best_question = None
         highest_score = 0
-
         for stored_question in self.questions:
             stored_words = stored_question.split()
             score = 0
-
             for word in useful_words:
                 if word in stored_words:
                     score = score + 1
-
             if score > highest_score:
                 highest_score = score
                 best_question = stored_question
-
         if best_question is not None and highest_score > 0:
             return self.questions[best_question]
-
         return "Sorry, I don't know the answer to that question yet."
-
     def chat(self):
-
         print("------------------------------------")
         print("          PYTHON CHATBOT")
         print("------------------------------------")
         print("Ask me a Python question.")
         print("Type 'exit' to stop the chatbot.")
         print()
-
         while True:
-
             question = input("You: ")
-
             if question.lower().strip() == "exit":
                 print("Bot: Goodbye! Keep learning Python.")
                 break
-
             answer = self.find_answer(question)
-
             print("Bot:", answer)
             print()
-
-
 def main():
-
     chatbot = PythonChatbot()
     chatbot.chat()
-
-
 if __name__ == "__main__":
     main()
